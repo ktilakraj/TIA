@@ -369,7 +369,9 @@
     }
     
     JourneyPlannerScreen *swtyaJPScreen = [[JourneyPlannerScreen alloc] initWithNibName:homeXIB bundle:nil];
-    [self presentViewController:swtyaJPScreen animated:NO completion:nil];
+    
+    UINavigationController *contoll=[[UINavigationController alloc]initWithRootViewController:swtyaJPScreen];
+    [self presentViewController:contoll animated:NO completion:nil];
 }
 
 -(void)loadFlightsViewController

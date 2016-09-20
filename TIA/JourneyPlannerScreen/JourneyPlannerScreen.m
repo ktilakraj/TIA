@@ -10,6 +10,9 @@
 #import "JourneyPlannerCell.h"
 #import "HomeScreen.h"
 #import "JourneyPlannerDetails.h"
+#import "JourneyMainViewController.h"
+#import "DataManager.h"
+
 
 @interface JourneyPlannerScreen ()
 {
@@ -18,7 +21,7 @@
     NSDictionary *swtyaJPDict;
     UIView *baseView;
     UITextField *getEmail;
-    
+    UIView *alertview;
     CGRect screenBounds;
 }
 
@@ -77,6 +80,34 @@
         [swtyaJPArray addObject:swtyaJPPreArray];
     
     [self saveArrayToUserDefaults:swtyaJPArray forKey:@"swtyaJPArray"];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHideNShow:) name:UIKeyboardDidHideNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHideNShow:) name:UIKeyboardWillShowNotification object:nil];
+
+}
+-(void)keyboardDidHideNShow:(NSNotification*)notification {
+    
+    if (notification.name == UIKeyboardWillShowNotification) {
+        
+        NSLog(@"SHOW");
+        CGRect rect=alertview.frame;
+        rect.origin.y=rect.origin.y-180;
+        alertview.frame=rect;
+        
+    } else if (notification.name == UIKeyboardDidHideNotification) {
+        
+        CGRect rect=alertview.frame;
+        rect.origin.y=rect.origin.y+180;
+        alertview.frame=rect;
+         NSLog(@"HIDDEN");
+    }
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBar.hidden=YES;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -90,7 +121,7 @@
     
     JourneyPlannerCell *cell = (JourneyPlannerCell *)[self.jpTableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
-    NSLog(@"Swtya : %i, %@ ", swtyaJPArray.count, swtyaJPArray);
+    NSLog(@"Swtya : %lu, %@ ", (unsigned long)swtyaJPArray.count, swtyaJPArray);
     
     swtyaJPDict = [NSDictionary dictionaryWithDictionary:[[swtyaJPArray objectAtIndex:indexPath.row] objectAtIndex:0]];
     
@@ -132,7 +163,12 @@
         
         swtyaJPDScreen.swtyaPlanIndex = indexPath.row;
         
-        [self presentViewController:swtyaJPDScreen animated:NO completion:nil];
+        //[self presentViewController:swtyaJPDScreen animated:NO completion:nil];
+        
+        JourneyMainViewController *journyDetailMain=[[JourneyMainViewController alloc]initWithNibName:@"JourneyMainViewController" bundle:nil];
+        
+        [self.navigationController pushViewController:journyDetailMain animated:YES];
+        
     }
     else
         [self showSwtyaPopUp];
@@ -149,18 +185,18 @@
     
     if(self.view.frame.size.height == 1024)
     {
-        h = 165;
+        h = 240;
         bh = 36;
         f = 21;
     }
     else
     {
-        h = 160;
+        h = 240;
         bh = 36;
         f = 16;
     }
     
-    UIView *alertview = [[UIView alloc]init];
+    alertview = [[UIView alloc]init];
     alertview = [[UIView alloc]initWithFrame:CGRectMake(10,((self.view.frame.size.height/2) - 75), baseView.bounds.size.width-20, h)];
     alertview.backgroundColor = [UIColor whiteColor];
     //alertview.layer.cornerRadius = 10.0f;
@@ -192,27 +228,58 @@
     
     [alertview addSubview:getEmail];
     
+    
+    UIButton *fromDate = [[UIButton alloc]initWithFrame:CGRectMake(5,150, alertview.bounds.size.width/2-10, bh)];
+    [fromDate setTitle:@"From Date" forState:UIControlStateNormal];
+    fromDate.backgroundColor = [UIColor colorWithRed:53.0/255.0 green:152.0/255.0 blue:219.0/255.0 alpha:1.0];
+    [fromDate setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    fromDate .titleLabel.font = [UIFont boldSystemFontOfSize:f];
+    [alertview addSubview:fromDate];
+    
+    [fromDate addTarget:self action:@selector(btnSelectFromDate:) forControlEvents:UIControlEventTouchUpInside];
+    
+
+    UIButton *toDate = [[UIButton alloc]initWithFrame:CGRectMake(alertview.bounds.size.width/2+5,150, alertview.bounds.size.width/2-10, bh)];
+    [toDate setTitle:@"To Date" forState:UIControlStateNormal];
+    toDate.backgroundColor = [UIColor colorWithRed:53.0/255.0 green:152.0/255.0 blue:219.0/255.0 alpha:1.0];
+    [toDate setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    toDate .titleLabel.font = [UIFont boldSystemFontOfSize:f];
+    [alertview addSubview:toDate];
+    
+    [toDate addTarget:self action:@selector(btnSelectToDate:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     UIButton *cancelBtn = [[UIButton alloc]initWithFrame:CGRectMake(5, alertview.bounds.size.height-42, alertview.bounds.size.width/2-10, bh)];
     [cancelBtn setTitle:@"Cancel" forState:UIControlStateNormal];
     cancelBtn.backgroundColor = [UIColor colorWithRed:53.0/255.0 green:152.0/255.0 blue:219.0/255.0 alpha:1.0];
     [cancelBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    //cancelBtn.layer.borderWidth = 1.0f;
     cancelBtn .titleLabel.font = [UIFont boldSystemFontOfSize:f];
-    //cancelBtn.layer.cornerRadius = 10;
     [alertview addSubview:cancelBtn];
     [cancelBtn addTarget:self action:@selector(cancelBtnAction) forControlEvents:UIControlEventTouchUpInside];
     
+
     UIButton *okBtn = [[UIButton alloc]initWithFrame:CGRectMake(alertview.bounds.size.width/2+5, alertview.bounds.size.height-42, alertview.bounds.size.width/2-10, bh)];
     [okBtn setTitle:@"Add" forState:UIControlStateNormal];
     okBtn.backgroundColor = [UIColor colorWithRed:53.0/255.0 green:152.0/255.0 blue:219.0/255.0 alpha:1.0];
     [okBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     okBtn .titleLabel.font = [UIFont boldSystemFontOfSize:f];
-    //okBtn.layer.borderWidth = 1.0f;
-    //okBtn.layer.cornerRadius = 10;
+
     [alertview addSubview:okBtn];
     [okBtn addTarget:self action:@selector(okBtnAction) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:baseView];
+}
+
+-(IBAction)btnSelectToDate:(id)sender
+{
+    NSLog(@"TO DATE");
+    [self.view endEditing:YES];
+}
+
+-(IBAction)btnSelectFromDate:(id)sender
+{
+    NSLog(@"FROM DATE");
+    [self.view endEditing:YES];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -226,6 +293,22 @@
     [baseView removeFromSuperview];
     //[collectLocation removeFromSuperview];
 }
+
+-(void)onOkPressed
+{
+    NSMutableArray *arrRoot=[[DataManager sharedInstance] getJournyPlanner];
+    NSMutableDictionary *dictRoot=[[NSMutableDictionary alloc]init];
+    [dictRoot setObject:@"" forKey:@"name"];
+    [dictRoot setObject:@"" forKey:@"fromDate"];
+    [dictRoot setObject:@"" forKey:@"toDate"];
+    [dictRoot setObject:[[NSArray alloc] init] forKey:@"chekcList"];
+    [dictRoot setObject:[[NSArray alloc] init] forKey:@"toDoList"];
+    [dictRoot setObject:[[NSArray alloc] init] forKey:@"budget"];
+    [dictRoot setObject:[[NSArray alloc] init] forKey:@"itinrary"];
+    [arrRoot addObject:dictRoot];
+    [[DataManager sharedInstance] setJournyPlanner:arrRoot];
+}
+
 
 - (void)okBtnAction
 {

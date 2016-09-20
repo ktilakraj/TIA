@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23D42DDD1D91A2ED009F069D /* JourneyMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D42DDB1D91A2ED009F069D /* JourneyMainViewController.m */; };
+		23D42DDE1D91A2ED009F069D /* JourneyMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23D42DDC1D91A2ED009F069D /* JourneyMainViewController.xib */; };
+		23D42DE11D91B5CC009F069D /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D42DE01D91B5CC009F069D /* DataManager.m */; };
 		23EF20EC1D8FB4FE00B1727D /* NSArray+SIAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 23EF20EB1D8FB4FE00B1727D /* NSArray+SIAdditions.m */; };
 		23EF20EF1D8FC0A000B1727D /* information.txt in Resources */ = {isa = PBXBuildFile; fileRef = 23EF20EE1D8FC0A000B1727D /* information.txt */; };
 		9011F59F1D34CE5200F09D22 /* Icon-App-29x29@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9011F59D1D34CE5200F09D22 /* Icon-App-29x29@3x.png */; };
@@ -262,6 +265,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		23D42DDA1D91A2ED009F069D /* JourneyMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JourneyMainViewController.h; path = InfoScreen/JourneyMainViewController.h; sourceTree = "<group>"; };
+		23D42DDB1D91A2ED009F069D /* JourneyMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JourneyMainViewController.m; path = InfoScreen/JourneyMainViewController.m; sourceTree = "<group>"; };
+		23D42DDC1D91A2ED009F069D /* JourneyMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = JourneyMainViewController.xib; path = InfoScreen/JourneyMainViewController.xib; sourceTree = "<group>"; };
+		23D42DDF1D91B5CC009F069D /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		23D42DE01D91B5CC009F069D /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		23EF20EA1D8FB4FE00B1727D /* NSArray+SIAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+SIAdditions.h"; sourceTree = "<group>"; };
 		23EF20EB1D8FB4FE00B1727D /* NSArray+SIAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+SIAdditions.m"; sourceTree = "<group>"; };
 		23EF20EE1D8FC0A000B1727D /* information.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = information.txt; sourceTree = "<group>"; };
@@ -658,6 +666,9 @@
 				9058AAAB1D32A09B0014DD8C /* InfoScreen 568.xib */,
 				90224A9B1C9F402A00FEC5D4 /* InfoScreen.xib */,
 				90A21BBA1CA9FB5500B6914E /* InfoScreen ipad.xib */,
+				23D42DDA1D91A2ED009F069D /* JourneyMainViewController.h */,
+				23D42DDB1D91A2ED009F069D /* JourneyMainViewController.m */,
+				23D42DDC1D91A2ED009F069D /* JourneyMainViewController.xib */,
 			);
 			name = InfoScreen;
 			sourceTree = "<group>";
@@ -863,6 +874,8 @@
 				903D156D1C9CA88B002689E5 /* Images.xcassets */,
 				903D156F1C9CA88B002689E5 /* LaunchScreen.xib */,
 				903D15601C9CA88A002689E5 /* Supporting Files */,
+				23D42DDF1D91B5CC009F069D /* DataManager.h */,
+				23D42DE01D91B5CC009F069D /* DataManager.m */,
 			);
 			path = TIA;
 			sourceTree = "<group>";
@@ -1271,6 +1284,7 @@
 				90224A8D1C9EF82100FEC5D4 /* s1242x2208.png in Resources */,
 				90A21BBE1CA9FD7100B6914E /* InfoScreenCell ipad.xib in Resources */,
 				90A21BB51CA9F10B00B6914E /* HomeScreen ipad.xib in Resources */,
+				23D42DDE1D91A2ED009F069D /* JourneyMainViewController.xib in Resources */,
 				9011F5A61D34D10100F09D22 /* Icon 57.png in Resources */,
 				90A21BE81CAA56E800B6914E /* JPBudgetUpperCell ipad.xib in Resources */,
 				90224A9D1C9F402B00FEC5D4 /* InfoScreen.xib in Resources */,
@@ -1399,6 +1413,8 @@
 				B06C75431CA060C8007CD0B8 /* InfoScreenCell.m in Sources */,
 				901E65171CA9A57500C18EF9 /* JPBudgetBottomCell.m in Sources */,
 				9070C16B1CBB5A3500F34F12 /* PMSelectionView.m in Sources */,
+				23D42DE11D91B5CC009F069D /* DataManager.m in Sources */,
+				23D42DDD1D91A2ED009F069D /* JourneyMainViewController.m in Sources */,
 				9070C1681CBB5A3500F34F12 /* PMCalendarView.m in Sources */,
 				90224AAE1CA12F3500FEC5D4 /* GujaratiNewspapers.m in Sources */,
 				903FFA731CBA7BC600831766 /* Reachability.m in Sources */,
