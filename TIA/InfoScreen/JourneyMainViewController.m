@@ -9,6 +9,7 @@
 #import "JourneyMainViewController.h"
 #import "JourneyPlannerDetails.h"
 #import "CheckListViewController.h"
+#import "DataManager.h"
 
 #define SMCUIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
@@ -68,6 +69,14 @@
     _dictRoot = dictRoot;
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear: animated];
+    NSMutableArray* arrRoots=[[DataManager sharedInstance] getJournyPlanner];
+    [self setDictRoot:[arrRoots objectAtIndex:[[DataManager sharedInstance]selectedjourneyIndex]]];
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -125,6 +134,7 @@
             //Check
             CheckListViewController *chekListVC=[[CheckListViewController alloc] initWithNibName:@"CheckListViewController" bundle:nil];
             [chekListVC setDictRoot:self.dictRoot];
+            [chekListVC setSelctedCheckListOrToDo:0];
              [self.navigationController pushViewController:chekListVC animated:YES];
         }
             break;
@@ -133,6 +143,7 @@
             //To Do
             CheckListViewController *chekListVC=[[CheckListViewController alloc] initWithNibName:@"CheckListViewController" bundle:nil];
              [chekListVC setDictRoot:self.dictRoot];
+             [chekListVC setSelctedCheckListOrToDo:1];
             [self.navigationController pushViewController:chekListVC animated:YES];
         }
             break;

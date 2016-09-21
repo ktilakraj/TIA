@@ -11,5 +11,6 @@
 @interface CheckListViewController : UIViewController
 
 @property(nonatomic,strong) NSMutableDictionary *dictRoot;
+@property(nonatomic,assign) NSInteger selctedCheckListOrToDo;
 
 @end

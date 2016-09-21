@@ -17,6 +17,8 @@
 
 @interface DataManager : NSObject
 
+@property(nonatomic,assign) NSInteger selectedjourneyIndex;
+
 +(id)sharedInstance;
 -(NSMutableArray*)getJournyPlanner;
 -(void)setJournyPlanner:(NSArray*)arrPlanner;

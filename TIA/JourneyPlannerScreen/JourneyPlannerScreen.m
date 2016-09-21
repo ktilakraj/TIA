@@ -89,14 +89,9 @@
     
     [self saveArrayToUserDefaults:swtyaJPArray forKey:@"swtyaJPArray"];
     
-    _arrRoots=[[DataManager sharedInstance] getJournyPlanner];
+   
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHideNShow:) name:UIKeyboardDidHideNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHideNShow:) name:UIKeyboardWillShowNotification object:nil];
-    
-    
-  
+
 }
 
 -(void)pickerinitlization
@@ -181,8 +176,19 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+     _arrRoots=[[DataManager sharedInstance] getJournyPlanner];
     self.navigationController.navigationBar.hidden=YES;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHideNShow:) name:UIKeyboardDidHideNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHideNShow:) name:UIKeyboardWillShowNotification object:nil];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name: UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name: UIKeyboardDidHideNotification object:nil];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -225,7 +231,7 @@
     {
         JourneyMainViewController *journyDetailMain=[[JourneyMainViewController alloc]initWithNibName:@"JourneyMainViewController" bundle:nil];
         [journyDetailMain setDictRoot:[_arrRoots objectAtIndex:indexPath.row]];
-        
+        [[DataManager sharedInstance]setSelectedjourneyIndex:indexPath.row];
         [self.navigationController pushViewController:journyDetailMain animated:YES];
 
     }
