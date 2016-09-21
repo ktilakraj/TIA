@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="MOD20.ttf">
@@ -12,23 +11,16 @@
         <mutableArray key="ROBOTOCONDENSED-REGULAR.ttf">
             <string>RobotoCondensed-Regular</string>
             <string>RobotoCondensed-Regular</string>
-            <string>RobotoCondensed-Regular</string>
-            <string>RobotoCondensed-Regular</string>
-            <string>RobotoCondensed-Regular</string>
-            <string>RobotoCondensed-Regular</string>
         </mutableArray>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JourneyMainViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheckListViewController">
             <connections>
                 <outlet property="btnBack" destination="FE8-s9-zY5" id="q7N-qe-2NZ"/>
-                <outlet property="btnBudget" destination="Hf6-rN-lya" id="nG9-YL-Qgf"/>
-                <outlet property="btnCheckList" destination="78l-oA-AU5" id="4oQ-Tc-DDg"/>
-                <outlet property="btnItinerary" destination="lTN-fE-u47" id="uYJ-UD-RaV"/>
-                <outlet property="btnToDoList" destination="50y-Mw-JC0" id="5JQ-25-T54"/>
                 <outlet property="lblFrmToDate" destination="XHX-jB-xyl" id="WsC-6l-Ca1"/>
                 <outlet property="lblHeaderTitle" destination="sYq-cs-gOd" id="JHe-Qr-Y71"/>
                 <outlet property="lblTitle" destination="rqh-or-m7i" id="k32-Qa-Qeu"/>
+                <outlet property="tableView" destination="gUe-6J-IRF" id="kbl-8S-VC4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -69,52 +61,6 @@
                         <constraint firstItem="XHX-jB-xyl" firstAttribute="leading" secondItem="ak1-JU-pSr" secondAttribute="leading" constant="5" id="ZpX-bl-zLD"/>
                         <constraint firstItem="rqh-or-m7i" firstAttribute="leading" secondItem="ak1-JU-pSr" secondAttribute="leading" constant="5" id="hxm-BU-fz0"/>
                         <constraint firstItem="rqh-or-m7i" firstAttribute="leading" secondItem="ak1-JU-pSr" secondAttribute="leading" constant="5" id="wOv-bV-3ft"/>
-                    </constraints>
-                </view>
-                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fuy-4y-1ZT">
-                    <rect key="frame" x="206" y="158" width="200" height="300"/>
-                    <subviews>
-                        <button opaque="NO" tag="102" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="50y-Mw-JC0">
-                            <rect key="frame" x="10" y="101" width="180" height="44"/>
-                            <color key="backgroundColor" red="0.070588235289999995" green="0.20784313730000001" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="RobotoCondensed-Regular" family="Roboto Condensed" pointSize="18"/>
-                            <state key="normal" title="To Do List"/>
-                            <connections>
-                                <action selector="optionsSelected:" destination="-1" eventType="touchUpInside" id="dRB-ca-FVE"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" tag="103" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTN-fE-u47">
-                            <rect key="frame" x="10" y="155" width="180" height="44"/>
-                            <color key="backgroundColor" red="0.070588235289999995" green="0.20784313730000001" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="RobotoCondensed-Regular" family="Roboto Condensed" pointSize="18"/>
-                            <state key="normal" title="ITINERARY"/>
-                            <connections>
-                                <action selector="optionsSelected:" destination="-1" eventType="touchUpInside" id="zzq-rM-GxS"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" tag="104" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hf6-rN-lya">
-                            <rect key="frame" x="10" y="208" width="180" height="44"/>
-                            <color key="backgroundColor" red="0.070588235289999995" green="0.20784313730000001" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="RobotoCondensed-Regular" family="Roboto Condensed" pointSize="18"/>
-                            <state key="normal" title="BUDGET"/>
-                            <connections>
-                                <action selector="optionsSelected:" destination="-1" eventType="touchUpInside" id="kxO-wC-N4t"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" tag="101" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="78l-oA-AU5">
-                            <rect key="frame" x="10" y="49" width="180" height="44"/>
-                            <color key="backgroundColor" red="0.070588235289999995" green="0.20784313730000001" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="RobotoCondensed-Regular" family="Roboto Condensed" pointSize="18"/>
-                            <state key="normal" title="CHECKLIST"/>
-                            <connections>
-                                <action selector="optionsSelected:" destination="-1" eventType="touchUpInside" id="R3X-jd-buA"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="fuy-4y-1ZT" secondAttribute="height" multiplier="2:3" id="9Vp-ea-LyW"/>
-                        <constraint firstAttribute="height" constant="300" id="EOM-yc-gnf"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yaw-cA-nMI">
@@ -170,19 +116,25 @@
                         </mask>
                     </variation>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gUe-6J-IRF">
+                    <rect key="frame" x="0.0" y="128" width="600" height="472"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="fuy-4y-1ZT" firstAttribute="top" secondItem="ak1-JU-pSr" secondAttribute="bottom" constant="38" id="2fx-6t-oNq"/>
                 <constraint firstItem="ak1-JU-pSr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="3kf-Vv-JPy"/>
+                <constraint firstItem="gUe-6J-IRF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Am7-t4-2MW"/>
+                <constraint firstAttribute="trailing" secondItem="gUe-6J-IRF" secondAttribute="trailing" id="H7J-fp-IwE"/>
+                <constraint firstItem="gUe-6J-IRF" firstAttribute="top" secondItem="ak1-JU-pSr" secondAttribute="bottom" constant="8" id="Nod-58-r7l"/>
                 <constraint firstAttribute="trailing" secondItem="ak1-JU-pSr" secondAttribute="trailing" id="Nxm-fZ-9yZ"/>
-                <constraint firstItem="fuy-4y-1ZT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="6" id="eSd-zy-wI0"/>
+                <constraint firstAttribute="bottom" secondItem="gUe-6J-IRF" secondAttribute="bottom" id="So8-VB-vEp"/>
                 <constraint firstItem="yaw-cA-nMI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="iDI-yn-MgH"/>
                 <constraint firstItem="yaw-cA-nMI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="suG-aP-nIn"/>
                 <constraint firstItem="ak1-JU-pSr" firstAttribute="top" secondItem="yaw-cA-nMI" secondAttribute="bottom" constant="5" id="v2P-Nn-K4a"/>
                 <constraint firstAttribute="trailing" secondItem="yaw-cA-nMI" secondAttribute="trailing" id="wdo-wx-apq"/>
             </constraints>
-            <point key="canvasLocation" x="-15" y="324"/>
+            <point key="canvasLocation" x="-259" y="293"/>
         </view>
     </objects>
     <resources>

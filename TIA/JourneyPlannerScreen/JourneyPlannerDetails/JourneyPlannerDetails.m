@@ -2212,7 +2212,7 @@
 
 - (IBAction)swtyaBckBtnClicked:(id)sender
 {
-    NSString *homeXIB;
+    /*NSString *homeXIB;
     
     if (screenBounds.size.height == 667)
     {
@@ -2236,7 +2236,9 @@
     }
     
     JourneyPlannerScreen *swtyaJPScreen = [[JourneyPlannerScreen alloc] initWithNibName:homeXIB bundle:nil];
-    [self presentViewController:swtyaJPScreen animated:NO completion:nil];
+    [self presentViewController:swtyaJPScreen animated:NO completion:nil];*/
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (NSMutableArray *)loadArrayFromUserDefaultsForKey:(NSString *)key

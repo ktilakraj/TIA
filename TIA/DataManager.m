@@ -35,7 +35,7 @@
     return arr;
 }
 
--(void)setJournyPlanner:(NSArray*)arrPlanner
+-(void)setJournyPlanner:(NSMutableArray*)arrPlanner
 {
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     [defaults setObject:arrPlanner forKey:JOURNYPLANER];

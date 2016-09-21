@@ -6,36 +6,29 @@
 //  Copyright © 2016 Swtya. All rights reserved.
 //
 
-#import "JourneyMainViewController.h"
-#import "JourneyPlannerDetails.h"
 #import "CheckListViewController.h"
+#import "JourneyPlannerDetails.h"
+#import "DataManager.h"
 
-#define SMCUIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+@interface CheckListViewController ()
 
-#define SMCUIColorFromRGBA(rgbValue,alphaValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:alphaValue]
-
-#define color_3598DB 0x3598DB
-@interface JourneyMainViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblFrmToDate;
 @property (weak, nonatomic) IBOutlet UIButton *btnBack;
 @property (weak, nonatomic) IBOutlet UILabel *lblHeaderTitle;
 - (IBAction)btnbackClick:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *btnCheckList;
-@property (weak, nonatomic) IBOutlet UIButton *btnToDoList;
-@property (weak, nonatomic) IBOutlet UIButton *btnItinerary;
-@property (weak, nonatomic) IBOutlet UIButton *btnBudget;
-- (IBAction)optionsSelected:(id)sender;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 
 @end
 
-@implementation JourneyMainViewController
+@implementation CheckListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
    
-    [self getLayer];
+   
     [self updateheader];
     
 }
@@ -45,24 +38,7 @@
     _lblTitle.text=[self.dictRoot valueForKey:@"name"];
     _lblFrmToDate.text=[NSString stringWithFormat:@"%@ to %@",[self.dictRoot valueForKey:@"fromDate"],[self.dictRoot valueForKey:@"toDate"]];
 }
--(void)getLayer {
-    
-    self.btnCheckList.layer.cornerRadius=3.0f;
-    self.btnCheckList.layer.borderWidth=2.0f;
-    self.btnCheckList.layer.borderColor=SMCUIColorFromRGB(color_3598DB).CGColor;
-   
-    self.btnToDoList.layer.cornerRadius=3.0f;
-    self.btnToDoList.layer.borderWidth=2.0f;
-    self.btnToDoList.layer.borderColor=SMCUIColorFromRGB(color_3598DB).CGColor;
-    
-    self.btnItinerary.layer.cornerRadius=3.0f;
-    self.btnItinerary.layer.borderWidth=2.0f;
-    self.btnItinerary.layer.borderColor=SMCUIColorFromRGB(color_3598DB).CGColor;
-    
-    self.btnBudget.layer.cornerRadius=3.0f;
-    self.btnBudget.layer.borderWidth=2.0f;
-    self.btnBudget.layer.borderColor=SMCUIColorFromRGB(color_3598DB).CGColor;
-}
+
 
 - (void)setDictRoot:(NSMutableDictionary *)dictRoot {
     _dictRoot = dictRoot;
@@ -119,38 +95,28 @@
     JourneyPlannerDetails *swtyaJPDScreen = [[JourneyPlannerDetails alloc] initWithNibName:homeXIB bundle:nil];
 //    [self presentViewController:swtyaJPDScreen animated:NO completion:nil];
     
-   
+    [self.navigationController pushViewController:swtyaJPDScreen animated:YES];
 
    
     switch (sender.tag) {
         case 101:
         {
             //Check
-            CheckListViewController *chekListVC=[[CheckListViewController alloc] initWithNibName:@"CheckListViewController" bundle:nil];
-            [chekListVC setDictRoot:self.dictRoot];
-             [self.navigationController pushViewController:chekListVC animated:YES];
         }
             break;
         case 102:
         {
             //To Do
-            CheckListViewController *chekListVC=[[CheckListViewController alloc] initWithNibName:@"CheckListViewController" bundle:nil];
-             [chekListVC setDictRoot:self.dictRoot];
-            [self.navigationController pushViewController:chekListVC animated:YES];
         }
             break;
         case 103:
         {
              //Itine
-     
-            [self.navigationController pushViewController:swtyaJPDScreen animated:YES];
         }
             break;
         case 104:
         {
             //Budget
-       
-            [self.navigationController pushViewController:swtyaJPDScreen animated:YES];
         }
             break;
             

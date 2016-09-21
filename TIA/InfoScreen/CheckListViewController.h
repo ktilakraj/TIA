@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JourneyMainViewController : UIViewController
+@interface CheckListViewController : UIViewController
 
 @property(nonatomic,strong) NSMutableDictionary *dictRoot;
 

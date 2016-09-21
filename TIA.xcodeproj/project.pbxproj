@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		232A60FE1D92381F00CA3BB1 /* CheckListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 232A60FC1D92381F00CA3BB1 /* CheckListViewController.m */; };
+		232A60FF1D92381F00CA3BB1 /* CheckListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 232A60FD1D92381F00CA3BB1 /* CheckListViewController.xib */; };
 		23D42DDD1D91A2ED009F069D /* JourneyMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D42DDB1D91A2ED009F069D /* JourneyMainViewController.m */; };
 		23D42DDE1D91A2ED009F069D /* JourneyMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23D42DDC1D91A2ED009F069D /* JourneyMainViewController.xib */; };
 		23D42DE11D91B5CC009F069D /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D42DE01D91B5CC009F069D /* DataManager.m */; };
@@ -265,6 +267,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		232A60FB1D92381F00CA3BB1 /* CheckListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CheckListViewController.h; path = InfoScreen/CheckListViewController.h; sourceTree = "<group>"; };
+		232A60FC1D92381F00CA3BB1 /* CheckListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CheckListViewController.m; path = InfoScreen/CheckListViewController.m; sourceTree = "<group>"; };
+		232A60FD1D92381F00CA3BB1 /* CheckListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CheckListViewController.xib; path = InfoScreen/CheckListViewController.xib; sourceTree = "<group>"; };
 		23D42DDA1D91A2ED009F069D /* JourneyMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JourneyMainViewController.h; path = InfoScreen/JourneyMainViewController.h; sourceTree = "<group>"; };
 		23D42DDB1D91A2ED009F069D /* JourneyMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JourneyMainViewController.m; path = InfoScreen/JourneyMainViewController.m; sourceTree = "<group>"; };
 		23D42DDC1D91A2ED009F069D /* JourneyMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = JourneyMainViewController.xib; path = InfoScreen/JourneyMainViewController.xib; sourceTree = "<group>"; };
@@ -764,6 +769,9 @@
 		902690021CA3EF86006F6630 /* JourneyPlannerDetails */ = {
 			isa = PBXGroup;
 			children = (
+				232A60FB1D92381F00CA3BB1 /* CheckListViewController.h */,
+				232A60FC1D92381F00CA3BB1 /* CheckListViewController.m */,
+				232A60FD1D92381F00CA3BB1 /* CheckListViewController.xib */,
 				9070C1501CBB5A1200F34F12 /* CalendarLibs */,
 				901E65131CA9A54900C18EF9 /* JPBudgetBottomCell */,
 				901E650D1CA99D2800C18EF9 /* JPChkBottomCell */,
@@ -1293,6 +1301,7 @@
 				90861E211D300A77007DC6C8 /* HomeScreen 480.xib in Resources */,
 				90C3DE761D3926D00088905A /* JourneyPlannerCell 320.xib in Resources */,
 				90C3DE691D391F520088905A /* DirectoryScreen 568.xib in Resources */,
+				232A60FF1D92381F00CA3BB1 /* CheckListViewController.xib in Resources */,
 				90224A7C1C9EF82100FEC5D4 /* s14.png in Resources */,
 				9011F5CA1D34D48300F09D22 /* Icon 50@2x.png in Resources */,
 				901E65121CA99D4A00C18EF9 /* JPChkBottomCell.xib in Resources */,
@@ -1412,6 +1421,7 @@
 				90224AB41CA12F6400FEC5D4 /* PunjabiNewspapers.m in Sources */,
 				B06C75431CA060C8007CD0B8 /* InfoScreenCell.m in Sources */,
 				901E65171CA9A57500C18EF9 /* JPBudgetBottomCell.m in Sources */,
+				232A60FE1D92381F00CA3BB1 /* CheckListViewController.m in Sources */,
 				9070C16B1CBB5A3500F34F12 /* PMSelectionView.m in Sources */,
 				23D42DE11D91B5CC009F069D /* DataManager.m in Sources */,
 				23D42DDD1D91A2ED009F069D /* JourneyMainViewController.m in Sources */,

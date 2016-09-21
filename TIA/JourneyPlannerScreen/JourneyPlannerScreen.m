@@ -14,7 +14,7 @@
 #import "DataManager.h"
 
 
-@interface JourneyPlannerScreen ()
+@interface JourneyPlannerScreen ()<UITableViewDataSource>
 {
     NSUserDefaults *userDefaults;
     NSMutableArray *swtyaJPArray;
@@ -25,6 +25,14 @@
     CGRect screenBounds;
 }
 
+@property (strong, nonatomic) UIDatePicker *datePicker;
+@property (strong, nonatomic) UIToolbar *datePickerToolbar;
+
+@property (strong, nonatomic) UITextField *fromTxt;
+@property (strong, nonatomic) UITextField *toTxt;
+@property (assign, nonatomic) NSInteger editedTag;
+@property (assign, nonatomic) BOOL isKeyBoardAppers;
+@property (strong, nonatomic) NSMutableArray *arrRoots;
 @end
 
 @implementation JourneyPlannerScreen
@@ -81,25 +89,92 @@
     
     [self saveArrayToUserDefaults:swtyaJPArray forKey:@"swtyaJPArray"];
     
+    _arrRoots=[[DataManager sharedInstance] getJournyPlanner];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHideNShow:) name:UIKeyboardDidHideNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHideNShow:) name:UIKeyboardWillShowNotification object:nil];
-
+    
+    
+  
 }
+
+-(void)pickerinitlization
+{
+    _datePicker = [[UIDatePicker alloc] init];
+    _datePicker.datePickerMode = UIDatePickerModeDate;
+    [_datePicker setMinimumDate:[NSDate date]];
+    [_datePicker addTarget:self action:@selector(datePickerValueChanged1:) forControlEvents:UIControlEventValueChanged];
+    
+    _datePickerToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
+    [_datePickerToolbar setBarStyle:UIBarStyleBlackTranslucent];
+    UIBarButtonItem *extraSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(dismissPicker:)]; // method to dismiss the picker when the "Done" button is pressed
+    
+    doneButton.tag = 7777;
+    _datePicker.tag = 7777;
+    
+    [_datePickerToolbar setItems:[[NSArray alloc] initWithObjects: extraSpace, doneButton, nil]];
+    self.fromTxt.inputView = _datePicker;
+    // Set UITextfield's inputAccessoryView as UIToolbar
+    self.fromTxt.inputAccessoryView = _datePickerToolbar;
+    
+    self.toTxt.inputView = _datePicker;
+    // Set UITextfield's inputAccessoryView as UIToolbar
+    self.toTxt.inputAccessoryView = _datePickerToolbar;
+}
+
+- (void)datePickerValueChanged1:(id)sender
+{
+  [self updateTextFields];
+}
+
+-(void)updateTextFields
+{
+    NSDate *selectedDate = _datePicker.date;
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"dd-MM-yyyy"];
+    if (_editedTag == 101) {
+        
+        self.fromTxt.text = [df stringFromDate:selectedDate];
+        [self.fromTxt resignFirstResponder];
+        
+    } else  if (_editedTag == 102) {
+        
+        self.toTxt.text = [df stringFromDate:selectedDate];
+        [self.toTxt resignFirstResponder];
+        
+    }
+}
+- (void)dismissPicker:(id)sender
+{
+    [self updateTextFields];
+}
+
 -(void)keyboardDidHideNShow:(NSNotification*)notification {
     
     if (notification.name == UIKeyboardWillShowNotification) {
         
         NSLog(@"SHOW");
-        CGRect rect=alertview.frame;
-        rect.origin.y=rect.origin.y-180;
-        alertview.frame=rect;
+        if (!_isKeyBoardAppers) {
+            
+            CGRect rect=alertview.frame;
+            rect.origin.y=rect.origin.y-100;
+            alertview.frame=rect;
+            _isKeyBoardAppers=true;
+        }
+        
         
     } else if (notification.name == UIKeyboardDidHideNotification) {
         
-        CGRect rect=alertview.frame;
-        rect.origin.y=rect.origin.y+180;
-        alertview.frame=rect;
+        if (_isKeyBoardAppers) {
+            
+            CGRect rect=alertview.frame;
+            rect.origin.y=rect.origin.y+100;
+            alertview.frame=rect;
+            _isKeyBoardAppers=false;
+        }
+      
          NSLog(@"HIDDEN");
     }
 }
@@ -110,9 +185,17 @@
     self.navigationController.navigationBar.hidden=YES;
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    
+    return 2;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return swtyaJPArray.count;
+    if (section == 0) {
+         return _arrRoots.count;
+    }
+    else return  1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)localTableView cellForRowAtIndexPath: (NSIndexPath *)indexPath
@@ -121,54 +204,30 @@
     
     JourneyPlannerCell *cell = (JourneyPlannerCell *)[self.jpTableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
-    NSLog(@"Swtya : %lu, %@ ", (unsigned long)swtyaJPArray.count, swtyaJPArray);
+    if (indexPath.section == 0) {
+        NSDictionary *dict=[_arrRoots objectAtIndex:indexPath.row];
+        
+        cell.swtyaJPLabel.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"name"]];
+        
+        return cell;
+    }
     
-    swtyaJPDict = [NSDictionary dictionaryWithDictionary:[[swtyaJPArray objectAtIndex:indexPath.row] objectAtIndex:0]];
+    cell.swtyaJPLabel.text = [NSString stringWithFormat:@"%@",@"Plan New Journey"];
     
-    NSLog(@"Swtya : %@ ", swtyaJPDict);
-    
-    cell.swtyaJPLabel.text = [NSString stringWithFormat:@"%@", [swtyaJPDict objectForKey:@"name"]];
+ 
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row != swtyaJPArray.count - 1)
+    if(indexPath.section == 0)
     {
-        NSString *homeXIB;
-        
-        if (screenBounds.size.height == 667)
-        {
-            homeXIB = @"JourneyPlannerDetails";
-        }
-        else if(screenBounds.size.height == 1024)
-        {
-            homeXIB = @"JourneyPlannerDetails ipad";
-        }
-        else if(screenBounds.size.height == 568)
-        {
-            homeXIB = @"JourneyPlannerDetails 568";
-        }
-        else if(screenBounds.size.height == 480)
-        {
-            homeXIB = @"JourneyPlannerDetails 480";
-        }
-        else if(screenBounds.size.height == 736)
-        {
-            homeXIB = @"JourneyPlannerDetails 414";
-        }
-        
-        JourneyPlannerDetails *swtyaJPDScreen = [[JourneyPlannerDetails alloc] initWithNibName:homeXIB bundle:nil];
-        
-        swtyaJPDScreen.swtyaPlanIndex = indexPath.row;
-        
-        //[self presentViewController:swtyaJPDScreen animated:NO completion:nil];
-        
         JourneyMainViewController *journyDetailMain=[[JourneyMainViewController alloc]initWithNibName:@"JourneyMainViewController" bundle:nil];
+        [journyDetailMain setDictRoot:[_arrRoots objectAtIndex:indexPath.row]];
         
         [self.navigationController pushViewController:journyDetailMain animated:YES];
-        
+
     }
     else
         [self showSwtyaPopUp];
@@ -229,24 +288,33 @@
     [alertview addSubview:getEmail];
     
     
-    UIButton *fromDate = [[UIButton alloc]initWithFrame:CGRectMake(5,150, alertview.bounds.size.width/2-10, bh)];
-    [fromDate setTitle:@"From Date" forState:UIControlStateNormal];
-    fromDate.backgroundColor = [UIColor colorWithRed:53.0/255.0 green:152.0/255.0 blue:219.0/255.0 alpha:1.0];
-    [fromDate setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    fromDate .titleLabel.font = [UIFont boldSystemFontOfSize:f];
-    [alertview addSubview:fromDate];
+    _fromTxt = [[UITextField alloc]initWithFrame:CGRectMake(5,120, alertview.bounds.size.width/2-10, bh)];
+    [_fromTxt setPlaceholder:@"From Date"];
     
-    [fromDate addTarget:self action:@selector(btnSelectFromDate:) forControlEvents:UIControlEventTouchUpInside];
+    [_fromTxt setValue:[UIColor colorWithRed:97.0/255.0 green:97.0/255.0 blue:97.0/255.0 alpha:1.0] forKeyPath:@"_placeholderLabel.textColor"];
+    _fromTxt.textColor = [UIColor colorWithRed:97.0/255.0 green:97.0/255.0 blue:97.0/255.0 alpha:1.0];
+    _fromTxt.delegate = self;
+    _fromTxt.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    _fromTxt.layer.borderWidth=1.0f;
+    _fromTxt.tag=101;
+    _fromTxt.textAlignment=NSTextAlignmentCenter;
+    [alertview addSubview:_fromTxt];
+    
+//    [fromDate addTarget:self action:@selector(btnSelectFromDate:) forControlEvents:UIControlEventTouchUpInside];
     
 
-    UIButton *toDate = [[UIButton alloc]initWithFrame:CGRectMake(alertview.bounds.size.width/2+5,150, alertview.bounds.size.width/2-10, bh)];
-    [toDate setTitle:@"To Date" forState:UIControlStateNormal];
-    toDate.backgroundColor = [UIColor colorWithRed:53.0/255.0 green:152.0/255.0 blue:219.0/255.0 alpha:1.0];
-    [toDate setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    toDate .titleLabel.font = [UIFont boldSystemFontOfSize:f];
-    [alertview addSubview:toDate];
+    _toTxt = [[UITextField alloc]initWithFrame:CGRectMake(alertview.bounds.size.width/2+5,120, alertview.bounds.size.width/2-10, bh)];
+      [_toTxt setPlaceholder:@"To Date"];
+    [_toTxt setValue:[UIColor colorWithRed:97.0/255.0 green:97.0/255.0 blue:97.0/255.0 alpha:1.0] forKeyPath:@"_placeholderLabel.textColor"];
+    _toTxt.textColor = [UIColor colorWithRed:97.0/255.0 green:97.0/255.0 blue:97.0/255.0 alpha:1.0];
+    _toTxt.delegate = self;
+    _toTxt.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    _toTxt.layer.borderWidth=1.0f;
+    _toTxt.tag=102;
+    _toTxt.textAlignment=NSTextAlignmentCenter;
+    [alertview addSubview:_toTxt];
     
-    [toDate addTarget:self action:@selector(btnSelectToDate:) forControlEvents:UIControlEventTouchUpInside];
+    //[_toTxt addTarget:self action:@selector(btnSelectToDate:) forControlEvents:UIControlEventTouchUpInside];
     
     
     UIButton *cancelBtn = [[UIButton alloc]initWithFrame:CGRectMake(5, alertview.bounds.size.height-42, alertview.bounds.size.width/2-10, bh)];
@@ -265,9 +333,11 @@
     okBtn .titleLabel.font = [UIFont boldSystemFontOfSize:f];
 
     [alertview addSubview:okBtn];
-    [okBtn addTarget:self action:@selector(okBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [okBtn addTarget:self action:@selector(onOkPressed) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:baseView];
+    
+    [self pickerinitlization];
 }
 
 -(IBAction)btnSelectToDate:(id)sender
@@ -288,6 +358,13 @@
     return YES;
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    NSLog(@"TExt field Edit");
+    _editedTag=textField.tag;
+    [textField becomeFirstResponder];
+}
+
 - (void)cancelBtnAction
 {
     [baseView removeFromSuperview];
@@ -296,17 +373,22 @@
 
 -(void)onOkPressed
 {
-    NSMutableArray *arrRoot=[[DataManager sharedInstance] getJournyPlanner];
+    NSMutableArray *arrRoot=[[NSMutableArray alloc] initWithArray:[[DataManager sharedInstance] getJournyPlanner]];
     NSMutableDictionary *dictRoot=[[NSMutableDictionary alloc]init];
-    [dictRoot setObject:@"" forKey:@"name"];
-    [dictRoot setObject:@"" forKey:@"fromDate"];
-    [dictRoot setObject:@"" forKey:@"toDate"];
-    [dictRoot setObject:[[NSArray alloc] init] forKey:@"chekcList"];
-    [dictRoot setObject:[[NSArray alloc] init] forKey:@"toDoList"];
-    [dictRoot setObject:[[NSArray alloc] init] forKey:@"budget"];
-    [dictRoot setObject:[[NSArray alloc] init] forKey:@"itinrary"];
+    [dictRoot setObject:getEmail.text forKey:@"name"];
+    [dictRoot setObject:_fromTxt.text forKey:@"fromDate"];
+    [dictRoot setObject:_toTxt.text forKey:@"toDate"];
+    [dictRoot setObject:[[NSMutableArray alloc] init] forKey:@"chekcList"];
+    [dictRoot setObject:[[NSMutableArray alloc] init] forKey:@"toDoList"];
+    [dictRoot setObject:[[NSMutableArray alloc] init] forKey:@"budget"];
+    [dictRoot setObject:[[NSMutableArray alloc] init] forKey:@"itinrary"];
     [arrRoot addObject:dictRoot];
     [[DataManager sharedInstance] setJournyPlanner:arrRoot];
+    
+    _arrRoots=[NSMutableArray arrayWithArray:arrRoot];
+    [_jpTableView reloadData];
+    [self.view endEditing:YES];
+    [baseView removeFromSuperview];
 }
 
 
