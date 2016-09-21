@@ -117,11 +117,8 @@
     }
     
     JourneyPlannerDetails *swtyaJPDScreen = [[JourneyPlannerDetails alloc] initWithNibName:homeXIB bundle:nil];
-//    [self presentViewController:swtyaJPDScreen animated:NO completion:nil];
     
-   
 
-   
     switch (sender.tag) {
         case 101:
         {
