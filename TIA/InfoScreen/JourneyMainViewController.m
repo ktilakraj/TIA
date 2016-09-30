@@ -9,6 +9,8 @@
 #import "JourneyMainViewController.h"
 #import "JourneyPlannerDetails.h"
 #import "CheckListViewController.h"
+#import "BudgetViewController.h"
+#import "ItineraryViewController.h"
 #import "DataManager.h"
 
 #define SMCUIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
@@ -16,6 +18,8 @@
 #define SMCUIColorFromRGBA(rgbValue,alphaValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:alphaValue]
 
 #define color_3598DB 0x3598DB
+#define color_123579 0x123579
+
 @interface JourneyMainViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblFrmToDate;
@@ -44,25 +48,35 @@
 -(void)updateheader
 {
     _lblTitle.text=[self.dictRoot valueForKey:@"name"];
-    _lblFrmToDate.text=[NSString stringWithFormat:@"%@ to %@",[self.dictRoot valueForKey:@"fromDate"],[self.dictRoot valueForKey:@"toDate"]];
+    
+    if (_lblTitle.text.length <= 0) {
+        _lblTitle.text=[[NSString alloc] getFromToString:self.dictRoot];
+        _lblFrmToDate.text=@"";
+    } else {
+      _lblFrmToDate.text=[[NSString alloc] getFromToString:self.dictRoot];
+    }
+    
+   
 }
+
+
 -(void)getLayer {
     
     self.btnCheckList.layer.cornerRadius=3.0f;
-    self.btnCheckList.layer.borderWidth=2.0f;
-    self.btnCheckList.layer.borderColor=SMCUIColorFromRGB(color_3598DB).CGColor;
+    self.btnCheckList.layer.borderWidth=1.0f;
+    self.btnCheckList.layer.borderColor=SMCUIColorFromRGB(color_123579).CGColor;
    
     self.btnToDoList.layer.cornerRadius=3.0f;
-    self.btnToDoList.layer.borderWidth=2.0f;
-    self.btnToDoList.layer.borderColor=SMCUIColorFromRGB(color_3598DB).CGColor;
+    self.btnToDoList.layer.borderWidth=1.0f;
+    self.btnToDoList.layer.borderColor=SMCUIColorFromRGB(color_123579).CGColor;
     
     self.btnItinerary.layer.cornerRadius=3.0f;
-    self.btnItinerary.layer.borderWidth=2.0f;
-    self.btnItinerary.layer.borderColor=SMCUIColorFromRGB(color_3598DB).CGColor;
+    self.btnItinerary.layer.borderWidth=1.0f;
+    self.btnItinerary.layer.borderColor=SMCUIColorFromRGB(color_123579).CGColor;
     
     self.btnBudget.layer.cornerRadius=3.0f;
-    self.btnBudget.layer.borderWidth=2.0f;
-    self.btnBudget.layer.borderColor=SMCUIColorFromRGB(color_3598DB).CGColor;
+    self.btnBudget.layer.borderWidth=1.0f;
+    self.btnBudget.layer.borderColor=SMCUIColorFromRGB(color_123579).CGColor;
 }
 
 - (void)setDictRoot:(NSMutableDictionary *)dictRoot {
@@ -151,14 +165,23 @@
         {
              //Itine
      
-            [self.navigationController pushViewController:swtyaJPDScreen animated:YES];
+            ItineraryViewController *chekListVC=[[ItineraryViewController alloc] initWithNibName:@"ItineraryViewController" bundle:nil];
+            [chekListVC setDictRoot:self.dictRoot];
+            [chekListVC setSelctedCheckListOrToDo:3];
+            
+            [self.navigationController pushViewController:chekListVC animated:YES];
         }
             break;
         case 104:
         {
             //Budget
+            //BudgetViewController.h
+            
+            BudgetViewController *chekListVC=[[BudgetViewController alloc] initWithNibName:@"BudgetViewController" bundle:nil];
+            [chekListVC setDictRoot:self.dictRoot];
+            [chekListVC setSelctedCheckListOrToDo:2];
        
-            [self.navigationController pushViewController:swtyaJPDScreen animated:YES];
+            [self.navigationController pushViewController:chekListVC animated:YES];
         }
             break;
             

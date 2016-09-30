@@ -33,6 +33,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    [NSThread sleepForTimeInterval:3.0];
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
    /* NSString *homeXIB;
     

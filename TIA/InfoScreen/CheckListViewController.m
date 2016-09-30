@@ -9,8 +9,9 @@
 #import "CheckListViewController.h"
 #import "JourneyPlannerDetails.h"
 #import "DataManager.h"
+#import "CheckListTableViewCell.h"
 
-@interface CheckListViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface CheckListViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,CheckListTableViewCellDelegete>
 
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblFrmToDate;
@@ -27,6 +28,8 @@
 
 - (IBAction)btnAddClick:(id)sender;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomspace;
+@property (strong,nonatomic) UITapGestureRecognizer *tap;
 
 @end
 
@@ -40,6 +43,20 @@
     _tableView.dataSource=self;
     [self updateheader];
     
+    _tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    //[self.tableView addGestureRecognizer:tap];
+     [self.tableView registerNib:[UINib nibWithNibName:@"CheckListTableViewCell" bundle:nil] forCellReuseIdentifier:@"checkListCell"];
+    
+}
+
+
+-(void)dismissKeyboard {
+    
+    [_txtChecklist resignFirstResponder];
+  
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -65,13 +82,23 @@
     if (_selctedCheckListOrToDo == 0) {
         
         _strKey=@"chekcList";
+        _lblTitle.text=@"CHECKLIST";
+        _lblFrmToDate.text=@"";
         
     } else {
         
          _strKey=@"toDoList";
+        _lblTitle.text=@"TO DO LIST";
+        _lblFrmToDate.text=@"";
     }
-    _lblTitle.text=[self.dictRoot valueForKey:@"name"];
-    _lblFrmToDate.text=[NSString stringWithFormat:@"%@ to %@",[self.dictRoot valueForKey:@"fromDate"],[self.dictRoot valueForKey:@"toDate"]];
+    
+   /* _lblTitle.text=[self.dictRoot valueForKey:@"name"];
+    if (_lblTitle.text.length <= 0) {
+        _lblTitle.text=[[NSString alloc] getFromToString:self.dictRoot];
+        _lblFrmToDate.text=@"";
+    } else {
+        _lblFrmToDate.text=[[NSString alloc] getFromToString:self.dictRoot];
+    }*/
     _arrCheckListItem=[[NSMutableArray alloc] initWithArray:[_dictRoot valueForKey:_strKey]];
     _viewBottom.layer.cornerRadius=2.0f;
     _viewBottom.layer. borderColor=[UIColor lightGrayColor].CGColor;
@@ -91,9 +118,11 @@
             CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
             
             [UIView animateWithDuration:0.3 animations:^{
-                CGRect f = self.view.frame;
-                f.origin.y = -keyboardSize.height;
-                self.view.frame = f;
+//                CGRect f = self.view.frame;
+//                f.origin.y = -keyboardSize.height;
+//                self.view.frame = f;
+                _bottomspace.constant=keyboardSize.height;
+                [self.view addGestureRecognizer:_tap];
             }];
             _isKeyBoardAppers=true;
         }
@@ -104,9 +133,11 @@
         if (_isKeyBoardAppers) {
             
             [UIView animateWithDuration:0.1 animations:^{
-                CGRect f = self.view.frame;
-                f.origin.y = 0.0f;
-                self.view.frame = f;
+//                CGRect f = self.view.frame;
+//                f.origin.y = 0.0f;
+//                self.view.frame = f;
+                _bottomspace.constant=8;
+                    [self.view removeGestureRecognizer:_tap];
             }];
             _isKeyBoardAppers=false;
         }
@@ -130,29 +161,74 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"checkListCell"];
-    if (!cell) {
+    CheckListTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"checkListCell"];
+    /*if (!cell) {
         
         cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"checkListCell"];
-    }
+    }*/
     
     NSDictionary *dict =[_arrCheckListItem objectAtIndex:indexPath.row];
-    cell.textLabel.text=[dict valueForKey:@"name"];
+    cell.lbltext.text=[dict valueForKey:@"name"];
     cell.contentView.clipsToBounds=YES;
+    [cell.btnCheck setBackgroundColor:[UIColor clearColor]];
+     [cell.btnDelete setBackgroundColor:[UIColor clearColor]];
     
     bool isChecked=[[dict valueForKey:@"ischekced"] boolValue];
-    
+     [cell.btnCheck setBackgroundColor:[UIColor whiteColor]];
     if (_selctedCheckListOrToDo == 0) {
         if (isChecked) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            
+            [cell.btnCheck setBackgroundColor:[UIColor clearColor]];
+            cell.btnCheck.layer.borderColor=SMCUIColorFromRGB(0x1cac37).CGColor;
+            cell.btnCheck.layer.borderWidth=1.0f;
+            [cell.btnCheck setSelected:YES];
         }
         else {
-            cell.accessoryType = UITableViewCellAccessoryNone;
+             [cell.btnCheck setBackgroundColor:[UIColor clearColor]];
+            cell.btnCheck.layer.borderColor=SMCUIColorFromRGB(0xe0e0e0).CGColor;
+            cell.btnCheck.layer.borderWidth=1.0f;
+            [cell.btnCheck setSelected:NO];
+        }
+        cell.btnCheck.hidden=NO;
+    } else {
+        
+        cell.btnCheck.hidden=YES;
+    }
+    
+
+    [cell setDict:dict withIndexpath:indexPath Onselection:^(TYPEOFBUTTON typeOfButton, NSIndexPath *indxpath, NSDictionary *dict) {
+        
+        
+        
+    }];
+    cell.delegate=self;
+  
+    return cell;
+}
+
+-(void)didSelectWith:(NSDictionary*)dict atIndexPath:(NSIndexPath*)indexPath isType:(TYPEOFBUTTON)type {
+    
+    
+    if ([_arrCheckListItem containsObject:dict]) {
+        
+        NSLog(@"Obejct availlable");
+        switch (type) {
+            case DELETE:
+            {
+                [self upatateDelete:dict];
+            }
+                break;
+            case CHECK:
+            {
+                [self upatateCheck:indexPath];
+                
+            }
+                break;
+            default:
+                break;
         }
     }
-   
-    
-    return cell;
+
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -169,24 +245,43 @@
     
     if (_selctedCheckListOrToDo == 0) {
         
-        NSMutableDictionary *dict =[[NSMutableDictionary alloc]initWithDictionary:[_arrCheckListItem objectAtIndex:indexPath.row]];;
-        bool isChecked=[[dict valueForKey:@"ischekced"] boolValue];
-        if (isChecked) {
-            [dict setValue:@"0" forKey:@"ischekced"];
-        } else {
-            [dict setValue:@"1" forKey:@"ischekced"];
-        }
         
-        NSMutableArray *arr=[[NSMutableArray alloc] initWithArray:_arrCheckListItem];
-        [arr replaceObjectAtIndex:indexPath.row withObject:dict];
-        [_tableView reloadData];
-        
-        _arrCheckListItem=[[NSMutableArray alloc] initWithArray:arr];
-        
-        [self updateInPreference];
     }
     
   
+}
+
+-(void)upatateCheck:(NSIndexPath*)indexPath {
+    
+    NSMutableDictionary *dict =[[NSMutableDictionary alloc]initWithDictionary:[_arrCheckListItem objectAtIndex:indexPath.row]];;
+    bool isChecked=[[dict valueForKey:@"ischekced"] boolValue];
+    if (isChecked) {
+        [dict setValue:@"0" forKey:@"ischekced"];
+    } else {
+        [dict setValue:@"1" forKey:@"ischekced"];
+    }
+    
+    NSMutableArray *arr=[[NSMutableArray alloc] initWithArray:_arrCheckListItem];
+    [arr replaceObjectAtIndex:indexPath.row withObject:dict];
+    
+    
+    _arrCheckListItem=[[NSMutableArray alloc] initWithArray:arr];
+    
+    [self updateInPreference];
+    
+    [_tableView reloadData];
+    
+}
+
+-(void)upatateDelete:(NSDictionary*)indexPath {
+    
+    NSMutableArray *arr=[[NSMutableArray alloc] initWithArray:_arrCheckListItem];
+    [arr removeObject:indexPath];
+   
+    _arrCheckListItem=[[NSMutableArray alloc] initWithArray:arr];
+    
+    [self updateInPreference];
+     [_tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -218,8 +313,15 @@
         [dict setObject:@"0" forKey:@"ischekced"];
         [_arrCheckListItem addObject:dict];
         self.txtChecklist.text=@"";
-        [_tableView reloadData];
+        //[_tableView reloadData];
+        
+
         [self updateInPreference];
+        
+        NSIndexPath *pathindex = [NSIndexPath indexPathForRow:self.arrCheckListItem.count-1 inSection:0];
+        
+        [_tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:pathindex] withRowAnimation:UITableViewRowAnimationTop];
+        [_tableView scrollToRowAtIndexPath:pathindex atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
 }
 

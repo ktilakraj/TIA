@@ -1,52 +1,54 @@
 [
 {
 	"title":"Journey Planner",
-	"subtitle":"",
+	"subtitle":"The easy way to plan a successful trip",
 	"code":"101"
 },
 {
+"title":"NRG Card",
+"subtitle":"Non Resident Gujarati Card",
+"code":"109"
+},
+{
+"title":"NRP Card",
+"subtitle":"Non Resident Punjabi Card",
+"code":"110"
+},
+
+{
+"title":"Exchange Rate",
+"subtitle":"Comparison of rates available",
+"code":"104"
+},
+{
 	"title":"Flights",
-	"subtitle":"",
+	"subtitle":"For deals on flights",
 	"code":"102"
 },
 {
 	"title":"Hotels",
-	"subtitle":"",
+	"subtitle":"Book your rooms",
 	"code":"103"
 },
 {
-	"title":"Exchange Rate",
-	"subtitle":"",
-	"code":"104"
+"title":"Sightseeing",
+"subtitle":"Explore India",
+"code":"107"
 },
+{
+"title":"NRI Information",
+"subtitle":"Get Relevant Information",
+"code":"106"
+},
+
 {
 	"title":"Newspaper",
-	"subtitle":"English,Panjabi,Gujarati",
+	"subtitle":"English,Punjabi,Gujarati",
 	"code":"105"
-},
-{
-	"title":"NRI Information",
-	"subtitle":"Get Relevant Information",
-	"code":"106"
-},
-{
-	"title":"Sightseeing",
-	"subtitle":"Explore India",
-	"code":"107"
 },
 {
 	"title":"Calander",
 	"subtitle":"Major Festivals & Holidays",
 	"code":"108"
-},
-{
-	"title":"NRG Card",
-	"subtitle":"Non Resident Gujarati Card",
-	"code":"109"
-},
-{
-	"title":"NRP Card",
-	"subtitle":"Non Resident Panjabi Card",
-	"code":"110"
 }
 ]

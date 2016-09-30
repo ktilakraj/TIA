@@ -182,6 +182,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHideNShow:) name:UIKeyboardDidHideNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHideNShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [_jpTableView reloadData];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -209,11 +211,16 @@
     static NSString *cellIdentifier = @"JourneyPlannerCell";
     
     JourneyPlannerCell *cell = (JourneyPlannerCell *)[self.jpTableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
     if (indexPath.section == 0) {
         NSDictionary *dict=[_arrRoots objectAtIndex:indexPath.row];
         
         cell.swtyaJPLabel.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"name"]];
+        
+        if (cell.swtyaJPLabel.text.length<=0) {
+            cell.swtyaJPLabel.text = [[NSString alloc] getFromToString:dict];
+        }
         
         return cell;
     }
@@ -379,22 +386,46 @@
 
 -(void)onOkPressed
 {
-    NSMutableArray *arrRoot=[[NSMutableArray alloc] initWithArray:[[DataManager sharedInstance] getJournyPlanner]];
-    NSMutableDictionary *dictRoot=[[NSMutableDictionary alloc]init];
-    [dictRoot setObject:getEmail.text forKey:@"name"];
-    [dictRoot setObject:_fromTxt.text forKey:@"fromDate"];
-    [dictRoot setObject:_toTxt.text forKey:@"toDate"];
-    [dictRoot setObject:[[NSMutableArray alloc] init] forKey:@"chekcList"];
-    [dictRoot setObject:[[NSMutableArray alloc] init] forKey:@"toDoList"];
-    [dictRoot setObject:[[NSMutableArray alloc] init] forKey:@"budget"];
-    [dictRoot setObject:[[NSMutableArray alloc] init] forKey:@"itinrary"];
-    [arrRoot addObject:dictRoot];
-    [[DataManager sharedInstance] setJournyPlanner:arrRoot];
     
-    _arrRoots=[NSMutableArray arrayWithArray:arrRoot];
-    [_jpTableView reloadData];
-    [self.view endEditing:YES];
-    [baseView removeFromSuperview];
+    if (getEmail.text.length >0) {
+        
+        NSMutableArray *arrRoot=[[NSMutableArray alloc] initWithArray:[[DataManager sharedInstance] getJournyPlanner]];
+        NSMutableDictionary *dictRoot=[[NSMutableDictionary alloc]init];
+        [dictRoot setObject:getEmail.text forKey:@"name"];
+        [dictRoot setObject:_fromTxt.text forKey:@"fromDate"];
+        [dictRoot setObject:_toTxt.text forKey:@"toDate"];
+        [dictRoot setObject:[[NSMutableArray alloc] init] forKey:@"chekcList"];
+        [dictRoot setObject:[[NSMutableArray alloc] init] forKey:@"toDoList"];
+        [dictRoot setObject:[[NSMutableArray alloc] init] forKey:@"budget"];
+        [dictRoot setObject:[[NSMutableArray alloc] init] forKey:@"itinrary"];
+        [arrRoot addObject:dictRoot];
+        [[DataManager sharedInstance] setJournyPlanner:arrRoot];
+        
+        _arrRoots=[NSMutableArray arrayWithArray:arrRoot];
+        [_jpTableView reloadData];
+        [self.view endEditing:YES];
+        [baseView removeFromSuperview];
+    }
+    else if (_fromTxt.text.length>0 && _toTxt.text.length>0) {
+        
+        NSMutableArray *arrRoot=[[NSMutableArray alloc] initWithArray:[[DataManager sharedInstance] getJournyPlanner]];
+        NSMutableDictionary *dictRoot=[[NSMutableDictionary alloc]init];
+        [dictRoot setObject:getEmail.text forKey:@"name"];
+        [dictRoot setObject:_fromTxt.text forKey:@"fromDate"];
+        [dictRoot setObject:_toTxt.text forKey:@"toDate"];
+        [dictRoot setObject:[[NSMutableArray alloc] init] forKey:@"chekcList"];
+        [dictRoot setObject:[[NSMutableArray alloc] init] forKey:@"toDoList"];
+        [dictRoot setObject:[[NSMutableArray alloc] init] forKey:@"budget"];
+        [dictRoot setObject:[[NSMutableArray alloc] init] forKey:@"itinrary"];
+        [arrRoot addObject:dictRoot];
+        [[DataManager sharedInstance] setJournyPlanner:arrRoot];
+        
+        _arrRoots=[NSMutableArray arrayWithArray:arrRoot];
+        [_jpTableView reloadData];
+        [self.view endEditing:YES];
+        [baseView removeFromSuperview];
+    }
+    
 }
 
 

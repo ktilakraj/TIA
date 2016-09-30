@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		232185061D937195006CCF61 /* BudgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 232185041D937195006CCF61 /* BudgetViewController.m */; };
+		232185071D937195006CCF61 /* BudgetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 232185051D937195006CCF61 /* BudgetViewController.xib */; };
+		2321850B1D937FF8006CCF61 /* ItineraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 232185091D937FF8006CCF61 /* ItineraryViewController.m */; };
+		2321850C1D937FF8006CCF61 /* ItineraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2321850A1D937FF8006CCF61 /* ItineraryViewController.xib */; };
+		2328C5951D9D8756006B9816 /* CheckListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2328C5931D9D8756006B9816 /* CheckListTableViewCell.m */; };
+		2328C5961D9D8756006B9816 /* CheckListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2328C5941D9D8756006B9816 /* CheckListTableViewCell.xib */; };
+		2328C59A1D9D90B0006B9816 /* ItinararyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2328C5981D9D90B0006B9816 /* ItinararyTableViewCell.m */; };
+		2328C59B1D9D90B0006B9816 /* ItinararyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2328C5991D9D90B0006B9816 /* ItinararyTableViewCell.xib */; };
+		2328C59F1D9D94A0006B9816 /* BudgetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2328C59D1D9D94A0006B9816 /* BudgetTableViewCell.m */; };
+		2328C5A01D9D94A0006B9816 /* BudgetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2328C59E1D9D94A0006B9816 /* BudgetTableViewCell.xib */; };
 		232A60FE1D92381F00CA3BB1 /* CheckListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 232A60FC1D92381F00CA3BB1 /* CheckListViewController.m */; };
 		232A60FF1D92381F00CA3BB1 /* CheckListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 232A60FD1D92381F00CA3BB1 /* CheckListViewController.xib */; };
 		23D42DDD1D91A2ED009F069D /* JourneyMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D42DDB1D91A2ED009F069D /* JourneyMainViewController.m */; };
@@ -14,6 +24,7 @@
 		23D42DE11D91B5CC009F069D /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D42DE01D91B5CC009F069D /* DataManager.m */; };
 		23EF20EC1D8FB4FE00B1727D /* NSArray+SIAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 23EF20EB1D8FB4FE00B1727D /* NSArray+SIAdditions.m */; };
 		23EF20EF1D8FC0A000B1727D /* information.txt in Resources */ = {isa = PBXBuildFile; fileRef = 23EF20EE1D8FC0A000B1727D /* information.txt */; };
+		23F738CF1D965C8400FEF63F /* NSString+TRVString.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F738CE1D965C8400FEF63F /* NSString+TRVString.m */; };
 		9011F59F1D34CE5200F09D22 /* Icon-App-29x29@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9011F59D1D34CE5200F09D22 /* Icon-App-29x29@3x.png */; };
 		9011F5A01D34CE5200F09D22 /* Icon-App-40x40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9011F59E1D34CE5200F09D22 /* Icon-App-40x40@3x.png */; };
 		9011F5A21D34CEA100F09D22 /* Icon-App-29x29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9011F5A11D34CEA100F09D22 /* Icon-App-29x29@2x.png */; };
@@ -267,6 +278,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		232185031D937195006CCF61 /* BudgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BudgetViewController.h; path = InfoScreen/BudgetViewController.h; sourceTree = "<group>"; };
+		232185041D937195006CCF61 /* BudgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BudgetViewController.m; path = InfoScreen/BudgetViewController.m; sourceTree = "<group>"; };
+		232185051D937195006CCF61 /* BudgetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BudgetViewController.xib; path = InfoScreen/BudgetViewController.xib; sourceTree = "<group>"; };
+		232185081D937FF8006CCF61 /* ItineraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItineraryViewController.h; path = InfoScreen/ItineraryViewController.h; sourceTree = "<group>"; };
+		232185091D937FF8006CCF61 /* ItineraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItineraryViewController.m; path = InfoScreen/ItineraryViewController.m; sourceTree = "<group>"; };
+		2321850A1D937FF8006CCF61 /* ItineraryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ItineraryViewController.xib; path = InfoScreen/ItineraryViewController.xib; sourceTree = "<group>"; };
+		2328C5921D9D8756006B9816 /* CheckListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckListTableViewCell.h; sourceTree = "<group>"; };
+		2328C5931D9D8756006B9816 /* CheckListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckListTableViewCell.m; sourceTree = "<group>"; };
+		2328C5941D9D8756006B9816 /* CheckListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckListTableViewCell.xib; sourceTree = "<group>"; };
+		2328C5971D9D90B0006B9816 /* ItinararyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItinararyTableViewCell.h; sourceTree = "<group>"; };
+		2328C5981D9D90B0006B9816 /* ItinararyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItinararyTableViewCell.m; sourceTree = "<group>"; };
+		2328C5991D9D90B0006B9816 /* ItinararyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItinararyTableViewCell.xib; sourceTree = "<group>"; };
+		2328C59C1D9D94A0006B9816 /* BudgetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BudgetTableViewCell.h; sourceTree = "<group>"; };
+		2328C59D1D9D94A0006B9816 /* BudgetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BudgetTableViewCell.m; sourceTree = "<group>"; };
+		2328C59E1D9D94A0006B9816 /* BudgetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BudgetTableViewCell.xib; sourceTree = "<group>"; };
 		232A60FB1D92381F00CA3BB1 /* CheckListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CheckListViewController.h; path = InfoScreen/CheckListViewController.h; sourceTree = "<group>"; };
 		232A60FC1D92381F00CA3BB1 /* CheckListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CheckListViewController.m; path = InfoScreen/CheckListViewController.m; sourceTree = "<group>"; };
 		232A60FD1D92381F00CA3BB1 /* CheckListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CheckListViewController.xib; path = InfoScreen/CheckListViewController.xib; sourceTree = "<group>"; };
@@ -278,6 +304,8 @@
 		23EF20EA1D8FB4FE00B1727D /* NSArray+SIAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+SIAdditions.h"; sourceTree = "<group>"; };
 		23EF20EB1D8FB4FE00B1727D /* NSArray+SIAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+SIAdditions.m"; sourceTree = "<group>"; };
 		23EF20EE1D8FC0A000B1727D /* information.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = information.txt; sourceTree = "<group>"; };
+		23F738CD1D965C8400FEF63F /* NSString+TRVString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TRVString.h"; sourceTree = "<group>"; };
+		23F738CE1D965C8400FEF63F /* NSString+TRVString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TRVString.m"; sourceTree = "<group>"; };
 		9011F59D1D34CE5200F09D22 /* Icon-App-29x29@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-29x29@3x.png"; sourceTree = "<group>"; };
 		9011F59E1D34CE5200F09D22 /* Icon-App-40x40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-40x40@3x.png"; sourceTree = "<group>"; };
 		9011F5A11D34CEA100F09D22 /* Icon-App-29x29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-29x29@2x.png"; sourceTree = "<group>"; };
@@ -769,6 +797,12 @@
 		902690021CA3EF86006F6630 /* JourneyPlannerDetails */ = {
 			isa = PBXGroup;
 			children = (
+				232185081D937FF8006CCF61 /* ItineraryViewController.h */,
+				232185091D937FF8006CCF61 /* ItineraryViewController.m */,
+				2321850A1D937FF8006CCF61 /* ItineraryViewController.xib */,
+				232185031D937195006CCF61 /* BudgetViewController.h */,
+				232185041D937195006CCF61 /* BudgetViewController.m */,
+				232185051D937195006CCF61 /* BudgetViewController.xib */,
 				232A60FB1D92381F00CA3BB1 /* CheckListViewController.h */,
 				232A60FC1D92381F00CA3BB1 /* CheckListViewController.m */,
 				232A60FD1D92381F00CA3BB1 /* CheckListViewController.xib */,
@@ -786,6 +820,15 @@
 				902789D01D3BAB640017A498 /* JourneyPlannerDetails 414.xib */,
 				9026900A1CA3F01D006F6630 /* JourneyPlannerDetails.xib */,
 				90A21BDB1CAA492600B6914E /* JourneyPlannerDetails ipad.xib */,
+				2328C5921D9D8756006B9816 /* CheckListTableViewCell.h */,
+				2328C5931D9D8756006B9816 /* CheckListTableViewCell.m */,
+				2328C5941D9D8756006B9816 /* CheckListTableViewCell.xib */,
+				2328C5971D9D90B0006B9816 /* ItinararyTableViewCell.h */,
+				2328C5981D9D90B0006B9816 /* ItinararyTableViewCell.m */,
+				2328C5991D9D90B0006B9816 /* ItinararyTableViewCell.xib */,
+				2328C59C1D9D94A0006B9816 /* BudgetTableViewCell.h */,
+				2328C59D1D9D94A0006B9816 /* BudgetTableViewCell.m */,
+				2328C59E1D9D94A0006B9816 /* BudgetTableViewCell.xib */,
 			);
 			name = JourneyPlannerDetails;
 			sourceTree = "<group>";
@@ -884,6 +927,8 @@
 				903D15601C9CA88A002689E5 /* Supporting Files */,
 				23D42DDF1D91B5CC009F069D /* DataManager.h */,
 				23D42DE01D91B5CC009F069D /* DataManager.m */,
+				23F738CD1D965C8400FEF63F /* NSString+TRVString.h */,
+				23F738CE1D965C8400FEF63F /* NSString+TRVString.m */,
 			);
 			path = TIA;
 			sourceTree = "<group>";
@@ -1141,6 +1186,7 @@
 				TargetAttributes = {
 					903D155C1C9CA88A002689E5 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 5DVQ92RT5H;
 					};
 					903D15751C9CA88B002689E5 = {
 						CreatedOnToolsVersion = 6.4;
@@ -1199,6 +1245,7 @@
 				90A21BB01CA9EA1400B6914E /* ROBOTOCONDENSED-LIGHT.ttf in Resources */,
 				90C5151B1CA1BEEC00D82FA4 /* tableCell.xib in Resources */,
 				9011F5CB1D34D48300F09D22 /* Icon 72.png in Resources */,
+				232185071D937195006CCF61 /* BudgetViewController.xib in Resources */,
 				90A21BF41CAA6C1E00B6914E /* Icon-76.png in Resources */,
 				9058AAAF1D32A15A0014DD8C /* InfoScreen 414.xib in Resources */,
 				903FFA6E1CBA695800831766 /* DevDetailsScreen.xib in Resources */,
@@ -1221,14 +1268,17 @@
 				902690121CA46617006F6630 /* JPItineraryCell.xib in Resources */,
 				90A21BAE1CA9EA1400B6914E /* ROBOTO-REGULAR.ttf in Resources */,
 				90C3DE551D3913510088905A /* EnglishNewspapers 414.xib in Resources */,
+				2328C5961D9D8756006B9816 /* CheckListTableViewCell.xib in Resources */,
 				9011F5B71D34D32C00F09D22 /* Icon-App-29x29@1x.png in Resources */,
 				90A21BD31CAA37FF00B6914E /* PunjabiNewspapers ipad.xib in Resources */,
 				902789D11D3BAB640017A498 /* JourneyPlannerDetails 414.xib in Resources */,
 				90224A821C9EF82100FEC5D4 /* s20.png in Resources */,
 				90224A7F1C9EF82100FEC5D4 /* s17.png in Resources */,
 				90224A851C9EF82100FEC5D4 /* s23.png in Resources */,
+				2328C59B1D9D90B0006B9816 /* ItinararyTableViewCell.xib in Resources */,
 				90A21BD91CAA464B00B6914E /* JourneyPlannerCell ipad.xib in Resources */,
 				90224A731C9EF82100FEC5D4 /* s5.png in Resources */,
+				2321850C1D937FF8006CCF61 /* ItineraryViewController.xib in Resources */,
 				90224A7A1C9EF82100FEC5D4 /* s12.png in Resources */,
 				903D158D1C9CAAA3002689E5 /* HomeScreen.xib in Resources */,
 				903FFA701CBA759100831766 /* staticmap.png in Resources */,
@@ -1255,6 +1305,7 @@
 				90224A741C9EF82100FEC5D4 /* s6.png in Resources */,
 				902789D91D3BB6470017A498 /* JourneyPlannerDetails 568.xib in Resources */,
 				90C3DE4F1D39119E0088905A /* NewspapersScreen 568.xib in Resources */,
+				2328C5A01D9D94A0006B9816 /* BudgetTableViewCell.xib in Resources */,
 				90224A7E1C9EF82100FEC5D4 /* s16.png in Resources */,
 				9011F5BB1D34D32C00F09D22 /* Icon-App-40x40@1x.png in Resources */,
 				90C3DE421D38FC910088905A /* calenderView 414.xib in Resources */,
@@ -1405,8 +1456,11 @@
 				90268FFA1CA3D414006F6630 /* JourneyPlannerScreen.m in Sources */,
 				90224A9C1C9F402B00FEC5D4 /* InfoScreen.m in Sources */,
 				903D15691C9CA88B002689E5 /* ViewController.m in Sources */,
+				23F738CF1D965C8400FEF63F /* NSString+TRVString.m in Sources */,
+				2328C59F1D9D94A0006B9816 /* BudgetTableViewCell.m in Sources */,
 				902690111CA46617006F6630 /* JPItineraryCell.m in Sources */,
 				90224A941C9EFF4A00FEC5D4 /* SwtyaWebViewScreen.m in Sources */,
+				232185061D937195006CCF61 /* BudgetViewController.m in Sources */,
 				9070C1671CBB5A3500F34F12 /* PMCalendarController.m in Sources */,
 				903D15661C9CA88B002689E5 /* AppDelegate.m in Sources */,
 				9070C1691CBB5A3500F34F12 /* PMDimmingView.m in Sources */,
@@ -1417,7 +1471,9 @@
 				90224AA81CA12AEA00FEC5D4 /* EnglishNewspapers.m in Sources */,
 				903BAC551CCB895A0050FAFC /* NIDropDown.m in Sources */,
 				90C4ED961CBA4402007B360D /* DirectoryCell.m in Sources */,
+				2321850B1D937FF8006CCF61 /* ItineraryViewController.m in Sources */,
 				902690001CA3D687006F6630 /* JourneyPlannerCell.m in Sources */,
+				2328C59A1D9D90B0006B9816 /* ItinararyTableViewCell.m in Sources */,
 				90224AB41CA12F6400FEC5D4 /* PunjabiNewspapers.m in Sources */,
 				B06C75431CA060C8007CD0B8 /* InfoScreenCell.m in Sources */,
 				901E65171CA9A57500C18EF9 /* JPBudgetBottomCell.m in Sources */,
@@ -1427,6 +1483,7 @@
 				23D42DDD1D91A2ED009F069D /* JourneyMainViewController.m in Sources */,
 				9070C1681CBB5A3500F34F12 /* PMCalendarView.m in Sources */,
 				90224AAE1CA12F3500FEC5D4 /* GujaratiNewspapers.m in Sources */,
+				2328C5951D9D8756006B9816 /* CheckListTableViewCell.m in Sources */,
 				903FFA731CBA7BC600831766 /* Reachability.m in Sources */,
 				23EF20EC1D8FB4FE00B1727D /* NSArray+SIAdditions.m in Sources */,
 				901E65111CA99D4A00C18EF9 /* JPChkBottomCell.m in Sources */,
@@ -1566,8 +1623,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shreyas Shah (5DVQ92RT5H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Shreyas Shah (JHU2A8327X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Shreyas Shah (JHU2A8327X)";
+				DEVELOPMENT_TEAM = 5DVQ92RT5H;
 				INFOPLIST_FILE = TIA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1581,8 +1639,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shreyas Shah (5DVQ92RT5H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Shreyas Shah (JHU2A8327X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Shreyas Shah (JHU2A8327X)";
+				DEVELOPMENT_TEAM = 5DVQ92RT5H;
 				INFOPLIST_FILE = TIA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

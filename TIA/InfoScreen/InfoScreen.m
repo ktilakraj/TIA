@@ -147,6 +147,7 @@
     [super viewWillAppear:animated];
     
     [self.navigationController.navigationBar setHidden:YES];
+    [_infoTableView reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -159,11 +160,12 @@
     static NSString *cellIdentifier = @"InfoScreenCell";
     
     InfoScreenCell *cell = (InfoScreenCell *)[self.infoTableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
     NSDictionary *dictInfo=[headerArray si_objectOrNilAtIndex:indexPath.row];
     cell.swtyaHeaderLabel.text = [dictInfo valueForKey:@"title"];
     cell.swtyaFooterLabel.text = [dictInfo valueForKey:@"subtitle"];
-    
+    cell.swtyaFooterLabel.minimumScaleFactor=0.2;
     cell.swtyaImgView.image = [UIImage imageNamed:[self getImageName:[dictInfo valueForKey:@"code"]]];
     
     return cell;
@@ -172,8 +174,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
     
     NSString *homeXIB;
     
